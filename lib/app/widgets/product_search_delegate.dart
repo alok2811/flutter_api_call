@@ -94,7 +94,7 @@ class ProductSearchDelegate extends SearchDelegate<String> {
                           placeholder: (context, url) =>
                               const CupertinoActivityIndicator(),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              const Icon(Icons.error),
                         ),
                         title: Text(productList[index].title ?? ""),
                         subtitle: Text(productList[index].description ?? ""),
@@ -154,7 +154,7 @@ class ProductSearchDelegate extends SearchDelegate<String> {
                           placeholder: (context, url) =>
                               const CupertinoActivityIndicator(),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              const Icon(Icons.error),
                         ),
                         title: Text(productList[index].title ?? ""),
                         subtitle: Text(productList[index].description ?? ""),

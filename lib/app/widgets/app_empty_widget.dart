@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class AppEmptyWidget extends StatelessWidget {
-  const AppEmptyWidget({Key? key}) : super(key: key);
+  const AppEmptyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

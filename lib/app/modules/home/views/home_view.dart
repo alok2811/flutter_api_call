@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:antier_flutter_task/app/data/models/product_model.dart';
 import 'package:antier_flutter_task/app/routes/app_pages.dart';
@@ -126,7 +125,7 @@ class HomeView extends GetView<HomeController> {
           } else {
             body = const Text("No more Data");
           }
-          return Container(
+          return SizedBox(
             height: 55.0,
             child: Center(child: body),
           );
@@ -137,7 +136,7 @@ class HomeView extends GetView<HomeController> {
       onLoading: controller.onLoading,
       child: ListView.separated(
         itemCount: categories.length,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         itemBuilder: (BuildContext context, int index) {
           String category = categories[index];
           List<ProductModel> categoryProducts = groupedProducts[category]!;
@@ -166,7 +165,7 @@ class HomeView extends GetView<HomeController> {
                       width: 80,
                       placeholder: (context, url) =>
                           const CupertinoActivityIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                     title: Text(categoryProducts[index].title ?? ""),
                     subtitle: Text(categoryProducts[index].description ?? ""),

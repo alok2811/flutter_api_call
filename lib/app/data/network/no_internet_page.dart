@@ -6,8 +6,7 @@ import 'api_request.dart';
 
 class NoInternetPage extends StatelessWidget {
   const NoInternetPage(
-      {Key? key, required this.callBack, required this.apiRequest})
-      : super(key: key);
+      {super.key, required this.callBack, required this.apiRequest});
   final ApiRequest apiRequest;
   final Function(ApiRequest apiRequest) callBack;
 

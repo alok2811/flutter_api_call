@@ -31,7 +31,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 "\$${controller.product.price}",
                 style: context.textTheme.displaySmall,
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Buy Now"))
+              ElevatedButton(onPressed: () {}, child: const Text("Buy Now"))
             ],
           ),
         ),

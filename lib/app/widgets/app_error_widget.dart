@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class AppErrorWidget extends StatelessWidget {
-  const AppErrorWidget({Key? key}) : super(key: key);
+  const AppErrorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
