@@ -1,0 +1,33 @@
+name: antier_flutter_task
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.2.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  get_storage: ^2.1.1
+  get: 4.6.6
+  dio: ^5.4.0
+  cool_alert: ^2.0.1
+  pull_to_refresh: ^2.0.0
+  cached_network_image: ^3.3.0
+  lottie: ^2.7.0
+
+
+dev_dependencies: 
+  flutter_lints: ^3.0.1
+  flutter_test: 
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/empty_lottie.json
+    - assets/error_lottie.json
+    - assets/no_wifi.png
+    - assets/splash_logo.png
+
