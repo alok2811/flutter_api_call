@@ -10,7 +10,7 @@ class DialogHelper {
     }
     Get.closeAllSnackbars();
     Get.snackbar(
-      "Ludhiana Traffic Police",
+      "Alok Task",
       message,
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       icon: const Icon(
@@ -24,7 +24,7 @@ class DialogHelper {
       snackPosition: SnackPosition.TOP,
       colorText: Colors.black,
       titleText: const Text(
-        "Ludhiana Traffic Police",
+        "Alok Task",
         textAlign: TextAlign.start,
         style: TextStyle(
           color: Colors.black,
