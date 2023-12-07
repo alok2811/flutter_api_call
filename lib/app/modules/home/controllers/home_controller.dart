@@ -17,6 +17,7 @@ class HomeController extends GetxController {
 
   RxList productCategories = ["All"].obs;
   RxInt limit = 20.obs;
+  RxInt page = 0.obs;
 
   RxBool loading = false.obs;
 
@@ -27,6 +28,7 @@ class HomeController extends GetxController {
     // Load data from storage
     getCategories();
     List<dynamic>? storedData = DbHelper.readData(DbKeys.products);
+    page.value = DbHelper.readData(DbKeys.pageNo) ?? 0;
 
     if (storedData != null && storedData.isNotEmpty) {
       products.value =
@@ -42,27 +44,27 @@ class HomeController extends GetxController {
   Future<void> onRefresh() async {
     // monitor network fetch
     selectedCategories.value = "All";
-
+    page.value = 0;
     products.clear();
     await fetchProducts();
-    await Future.delayed(const Duration(milliseconds: 1000));
     // if failed,use refreshFailed()
     refreshController.refreshCompleted();
   }
 
   Future<void> onLoading() async {
     // monitor network fetch
-    await fetchProducts(lastId: products.last.id);
-    await Future.delayed(const Duration(milliseconds: 1000));
+    ++page.value;
+    await fetchProducts();
     refreshController.loadComplete();
   }
 
   void saveProducts({required List<dynamic> data}) {
     // Save data to storage
     DbHelper.writeData(DbKeys.products, data);
+    DbHelper.writeData(DbKeys.pageNo, page.value);
   }
 
-  Future<void> fetchProducts({num? lastId}) async {
+  Future<void> fetchProducts() async {
     if (selectedCategories.value != "All") {
       loading.value = true;
       ApiRequest apiRequest = ApiRequest(
@@ -79,8 +81,7 @@ class HomeController extends GetxController {
     }
 
     ApiRequest apiRequest = ApiRequest(
-        url: ApiConstants.productListUrl(
-            limit: limit.value, page: lastId?.toInt() ?? 0),
+        url: ApiConstants.productListUrl(limit: limit.value, page: page.value),
         requestType: RequestType.GET);
 
     var response = await BaseClient.handleRequest(apiRequest);

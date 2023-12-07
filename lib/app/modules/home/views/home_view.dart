@@ -1,3 +1,4 @@
+import 'dart:collection';
 
 import 'package:antier_flutter_task/app/data/models/product_model.dart';
 import 'package:antier_flutter_task/app/routes/app_pages.dart';
@@ -94,17 +95,21 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget buildProductList() {
-    // Group products by category
+    Set<String> uniqueProductIds = HashSet<String>();
+
     Map<String, List<ProductModel>> groupedProducts = {};
 
     for (ProductModel product in controller.products) {
+      if (!uniqueProductIds.add("${product.id}")) {
+        continue;
+      }
+
       if (!groupedProducts.containsKey(product.category)) {
         groupedProducts[product.category!] = [];
       }
       groupedProducts[product.category]!.add(product);
     }
 
-    // Create a list of categories
     List<String> categories = groupedProducts.keys.toList();
 
     return SmartRefresher(
@@ -165,7 +170,8 @@ class HomeView extends GetView<HomeController> {
                       width: 80,
                       placeholder: (context, url) =>
                           const CupertinoActivityIndicator(),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                     title: Text(categoryProducts[index].title ?? ""),
                     subtitle: Text(categoryProducts[index].description ?? ""),
